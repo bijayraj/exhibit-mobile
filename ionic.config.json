@@ -1,0 +1,7 @@
+{
+  "name": "exhibit-ui",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
