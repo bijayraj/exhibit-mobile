@@ -1,17 +1,48 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Tab 1
-    </ion-title>
+    <ion-buttons slot="end">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Explore</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+  <div class="top-container">
+
+    <h1 class="heading">Tap Tour</h1>
+
+    <h5 class="sub-heading">
+
+      Tap your phone to this tag to get enlighted!
+    </h5>
+
+
+    <div class="flex-center">
+      <div class="image-container">
+        <img src="./assets/images/nfc-icon.svg" class="main-img" />
+
+      </div>
+      <ion-button class="scan-button" fill="outline" type="button" expand="block" color="tertiary"
+        (click)="readNFCTag()">
+        <ion-icon name="radio" slot="start"></ion-icon>
+        Click here to Start Scanning
+      </ion-button>
+
+      <ion-button *ngIf="isWeb" class="scan-button" fill="outline" type="button" expand="block" color="tertiary"
+        (click)="navigateArtwork(1)">
+        <ion-icon name="radio" slot="start"></ion-icon>
+        Direct Test
+      </ion-button>
+
+
+      <br />
+    </div>
+
+  </div>
+
+
+
+
 </ion-content>

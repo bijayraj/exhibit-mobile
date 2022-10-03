@@ -1,0 +1,134 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="tabs"></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>Artwork</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- Fixed Floating Action Button that does not scroll with the content -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="success" id="open-modal" expand="block">
+      <ion-icon name="chatbubbles"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <ion-card>
+    <ion-card-header>
+      <!-- <ion-card-subtitle>Card Subtitle</ion-card-subtitle> -->
+      <ion-card-title>{{artwork?.title}}</ion-card-title>
+      <!-- <ion-card-title>{{descTemp}}</ion-card-title> -->
+    </ion-card-header>
+
+    <ion-card-content>
+      {{artwork?.description}}
+
+      <div *ngFor="let asset of artworkAssets">
+
+        <div class="img-container">
+          <img *ngIf="asset.assetType==0" [src]="asset.address" [alt]="asset.description" />
+        </div>
+
+        <app-wavplayer *ngIf="asset.assetType == 1" [play_The_track]="asset.address" [title]="asset.title">
+        </app-wavplayer>
+      </div>
+
+      <p><a *ngIf="artwork?.moreInfo" target="_blank" rel="noopener noreferrer"
+          [href]="artwork?.moreInfo | safeHtml">More Info..</a>
+      </p>
+
+    </ion-card-content>
+  </ion-card>
+
+  <!-- <div *ngIf="imageList" style="text-align: center; max-height: 300px;">
+    <img [src]="imageList[idTemp].url | safeHtml" (click)="showPhoto(imageList[idTemp].url, 'some_title')" />
+  </div> -->
+
+
+  <!-- 
+  <iframe width="300" height="200" src="https://www.youtube.com/embed/KeGxFx36mmU" title="YouTube video player"
+    frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen></iframe> -->
+  <!-- <app-wavplayer></app-wavplayer> -->
+
+
+  <ion-modal #modal trigger="open-modal" (didDismiss)="onModalClose()" [initialBreakpoint]="0.5"
+    [breakpoints]="[0, 0.5, 0.75]">
+    <ng-template>
+      <ion-content>
+
+        <div class="question-container">
+          <ion-item>
+            <ion-textarea rows="3" placeholder="Press the listen button or enter your question here and press Ask."
+              [(ngModel)]="userQuestion"></ion-textarea>
+
+          </ion-item>
+
+
+          <ion-row>
+            <ion-col size="4">
+              <ion-button size="small" color="danger" *ngIf="playingTTS" (click)="stopTTS()">
+                Stop Audio
+                <ion-icon slot="end" name="remove-circle"></ion-icon>
+              </ion-button>
+
+              <ion-button size="small" fill="outline" *ngIf="recording" (click)="cancelRecognition()">
+                Cancel
+                <ion-icon name="close-circle"></ion-icon>
+              </ion-button>
+            </ion-col>
+
+            <ion-col size="4">
+              <ion-label *ngIf="isCallingAnswer">Awaiting Reply...</ion-label>
+              <ion-button *ngIf="!recording && !isCallingAnswer" (click)="startRecognition()">
+                Listen
+                <ion-icon slot="end" name="mic"></ion-icon>
+              </ion-button>
+
+              <ion-label *ngIf="recording">Listening...</ion-label>
+              <ion-spinner *ngIf="recording" name="dots"></ion-spinner>
+
+              <ion-button color="warning" *ngIf="recording" (click)="stopRecognition()">
+                Stop
+                <ion-icon slot="end" name="mic-off-outline"></ion-icon>
+              </ion-button>
+
+
+            </ion-col>
+
+            <ion-col size="4" style="text-align: right;">
+
+              <ion-spinner *ngIf="isCallingAnswer" name="crescent"></ion-spinner>
+              <ion-button fill="outline" *ngIf="!(isCallingAnswer || recording)" (click)="askQuestion()">
+                Ask
+                <ion-icon slot="end" name="help"></ion-icon>
+              </ion-button>
+            </ion-col>
+          </ion-row>
+
+          <p style="font-size: small; padding:5px; text-align: left; margin:0px">
+            {{questionResponse}}
+          </p>
+
+        </div>
+
+        <!-- <ion-fab-button color="danger" expand="block">
+          <ion-icon name="chatbubbles"></ion-icon>
+        </ion-fab-button>
+
+        <ion-fab-button>
+          <ion-icon name="settings"></ion-icon>
+        </ion-fab-button> -->
+
+
+
+
+
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+</ion-content>

@@ -1,0 +1,113 @@
+<!-- <div class="fixedContent">
+  <ion-thumbnail [ngStyle]="{'background':'url('+ image +')'}"></ion-thumbnail>
+</div> -->
+
+<!-- <p>{{title}}</p>
+<div class="audioplayer">
+  <div class="audioplayer-playpause" title="Play">
+    <ion-button style="padding:0px;" fill="clear" size="small" (click)="play()" *ngIf="!is_playing"
+      justify-content-center [disabled]="!is_ready">
+      <ion-icon size="small" name="play" class="lightColor"></ion-icon>
+    </ion-button>
+
+    <ion-button style="padding:0px;" (click)="pause()" size="small" *ngIf="is_playing" justify-content-center
+      [disabled]="!is_ready">
+      <ion-icon size="small" name="pause" class="lightColor"></ion-icon>
+    </ion-button>
+  </div>
+  <div class="audioplayer-time audioplayer-time-current">{{ display_position }}</div>
+  <div class="audioplayer-bar">
+
+    <ion-range style="margin-top:-15px" min="0" max="{{duration}}" [(ngModel)]="position">
+    </ion-range>
+  </div>
+  <div class="audioplayer-time audioplayer-time-duration">{{ display_duration }}</div>
+</div> -->
+
+<ion-card>
+
+  <ion-card-content style="padding:2px">
+
+    <ion-grid class="ion-no-padding">
+      <ion-row>
+        <ion-col size="12" no-padding>
+          <ion-range min="0" max="{{duration}}" [(ngModel)]="position">
+          </ion-range>
+        </ion-col>
+      </ion-row>
+    
+    <ion-row>
+    
+    
+      <ion-col class="ion-align-self-start" no-padding>
+        <span class="duration">{{ display_position }}</span>
+      </ion-col>
+      <ion-col class="ion-align-self-center"no-padding >
+        <div class="play-container">
+          <ion-button fill="clear"  (click)="play()" *ngIf="!is_playing"
+          justify-content-center [disabled]="!is_ready">
+          <ion-icon size="large" name="play-circle-outline" ></ion-icon>
+        </ion-button>
+      
+        <ion-button (click)="pause()"  *ngIf="is_playing" justify-content-center
+          [disabled]="!is_ready">
+          <ion-icon size="large" name="pause-circle-outline" ></ion-icon>
+        </ion-button>
+        </div>
+      </ion-col>
+      <ion-col style="text-align: right" class="ion-align-self-start" no-padding>
+        <span class="duration">{{ display_duration }}</span>
+      </ion-col>
+    </ion-row>
+    
+    
+    </ion-grid>
+  </ion-card-content>
+</ion-card>
+
+
+<!-- 
+
+<div style="background-color: black;">
+
+  <ion-range min="0" max="{{duration}}" [(ngModel)]="position" color="light">
+  </ion-range>
+  <div class="rangePlaytime">
+    <ion-label class="startTime" color="light">{{ display_position }}</ion-label>
+    <ion-label class="endTime" color="light" *ngIf="duration == -1">--:--</ion-label>
+    <ion-label class="endTime" color="light" *ngIf="duration != -1">{{ display_duration }}</ion-label>
+  </div>
+  <ion-grid>
+    <ion-row justify-content-center align-items-center style="height: 100%">
+      <ion-col>
+        <div class="flexRow">
+
+          <div>
+            <ion-button fill="clear" color="light" (click)="controlSeconds('back')">
+              <ion-icon name="play-back-circle"></ion-icon>
+            </ion-button>
+          </div>
+
+          <div>
+            <ion-button class="play_pause_btn" (click)="play()" color="light" *ngIf="!is_playing" justify-content-center
+              [disabled]="!is_ready" align-items-center>
+              <ion-icon name="play" class="darkColor"></ion-icon>
+            </ion-button>
+
+            <ion-button class="play_pause_btn" (click)="pause()" color="light" *ngIf="is_playing" justify-content-center
+              [disabled]="!is_ready" align-items-center>
+              <ion-icon name="pause" class="darkColor"></ion-icon>
+            </ion-button>
+          </div>
+
+          <div>
+            <ion-button fill="clear" color="light" (click)="controlSeconds('forward')">
+              <ion-icon name="play-forward-circle" class="Iconsize_For_Rev"></ion-icon>
+            </ion-button>
+          </div>
+
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</div>  -->

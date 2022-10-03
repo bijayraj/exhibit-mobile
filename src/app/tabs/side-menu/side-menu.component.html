@@ -1,0 +1,44 @@
+<ion-menu side="end" menuId="first" contentId="tabs-main" swipeGesture="true" type="overlay">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+
+
+    <div *ngIf="user" class="header-content">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS884yE-aP3PQdStnZ7KZecX04EDdYa2YpRgQ&usqp=CAU"
+        alt="" />
+      <ion-label>
+        <h2>{{user.firstName + ' ' + user.lastName}}</h2>
+        <p>{{user.username}}</p>
+      </ion-label>
+    </div>
+
+
+    <ion-list class="menu-items">
+      <ion-item *ngIf="user; else elseBlock" button (click)="logout()">
+        <!-- <ion-label>Logout</ion-label> -->
+        <ion-icon name="log-out"></ion-icon> Logout
+      </ion-item>
+
+      <ng-template #elseBlock>
+        <ion-item button (click)="login()">
+          <!-- <ion-label>Logout</ion-label> -->
+          <ion-icon name="log-in"></ion-icon> Creator Log In
+        </ion-item>
+      </ng-template>
+
+
+
+
+    </ion-list>
+
+
+  </ion-content>
+
+
+
+</ion-menu>

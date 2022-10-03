@@ -1,0 +1,63 @@
+#photo-container {
+  position: relative;
+  height: 100px;
+  width: 100%;
+  background-color: #000;
+  z-index: 999;
+}
+
+ion-card {
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+// ion-card {
+//   height: 100%;
+//   width: 100%;
+// }
+
+// ion-card > ion-card-content {
+//   height: 200px; //your height of content here
+//   overflow: scroll;
+// }
+
+.img-container {
+  text-align: center;
+}
+
+.item-img {
+  max-width: 500px;
+}
+
+/* Minimum height */
+@media (min-height: 300px) {
+  .item-img {
+    max-width: 300px;
+  }
+}
+
+
+/* Minimum height */
+@media (min-height: 700px) {
+  .item-img {
+    max-width: 500px;
+  }
+}
+
+.flex-container {
+  display: flex;
+  flex-flow: column wrap;
+  align-content: space-between;
+  width: 100%;
+}
+
+.flex-container>div {
+  text-align: center;
+}
+
+.question-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

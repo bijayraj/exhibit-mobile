@@ -3,7 +3,19 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  // apiBaseUrl: 'http://170.187.152.5:3001',
+  // apiUrl: 'http://170.187.152.5:3001/api/v1'
+  apiBaseUrl: 'http://170.187.152.5:3001',
+  apiUrl: 'http://170.187.152.5:3001/api/v1'
+
+  // apiBaseUrl: 'http://localhost:3001',
+  // apiUrl: 'http://localhost:3001/api/v1'
+
+  // apiBaseUrl: 'http://192.168.0.30:3001',
+  // apiUrl: 'http://192.168.0.30:3001/api/v1'
+  // apiBaseUrl: 'http://192.168.0.30:3001',
+  // apiUrl: 'http://192.168.0.30:3001/api/v1'
 };
 
 /*

@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="tabs/artist-art"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Create Tags</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+
+  <form [formGroup]="artForm">
+    <div class="input-group">
+      <ion-item>
+        <ion-label position="floating">Exhibit</ion-label>
+        <!-- <ion-input readonly disabled value="{{exhibit?.name}}"></ion-input> -->
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Title</ion-label>
+        <ion-input formControlName="title"></ion-input>
+      </ion-item>
+
+      <div *ngIf="(f.title.dirty || f.title.touched) && f.title.errors" class="errors">
+        <span *ngIf="f.title.errors?.required">Title is required</span>
+      </div>
+
+
+      <ion-item>
+        <ion-label position="floating">Description</ion-label>
+        <ion-textarea formControlName="description" maxlength=250></ion-textarea>
+      </ion-item>
+      <div *ngIf="(f.description.dirty || f.description.touched) && f.description.errors" class="errors">
+        <span *ngIf="f.description.errors?.required">Short description is required</span>
+      </div>
+
+
+      <ion-item>
+        <ion-label position="floating">More Info URL</ion-label>
+        <ion-input formControlName="moreInfo"></ion-input>
+      </ion-item>
+    </div>
+
+    <!-- <ion-button type="submit" expand="block" [disabled]="!artForm.valid">Create</ion-button> -->
+
+  </form>
+
+  <ion-button expand="block" (click)="writeTag()">Write to NFC Tag</ion-button>
+
+
+
+</ion-content>
