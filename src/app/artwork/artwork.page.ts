@@ -12,6 +12,8 @@ import { SpeechRecognition } from '@capacitor-community/speech-recognition';
 import { catchError, finalize } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
 
+
+
 @Component({
   selector: 'app-artwork',
   templateUrl: './artwork.page.html',
@@ -30,7 +32,6 @@ export class ArtworkPage implements OnInit {
 
   playingTTS: boolean = false;
   isCallingAnswer: boolean = false;
-
   recording: boolean = false;
 
   @ViewChild(IonModal) modal: IonModal;
@@ -48,12 +49,24 @@ export class ArtworkPage implements OnInit {
     SpeechRecognition.requestPermission();
   }
 
+
+
+  autoPlayAudio() {
+    this.artwork.ArtworkAssets.forEach(item => {
+      if (item.assetType == 1 && item.autoPlay == true) {
+
+      }
+    });
+  }
+
   ngOnInit() {
     this.route.params.subscribe(params => {
       const id = params.id;
       this.idTemp = id;
       console.log('THe id is');
       console.log(id);
+
+
       this.artworkService.get(id).subscribe(data => {
         this.artwork = data;
         this.artworkAssets = this.artwork.ArtworkAssets;

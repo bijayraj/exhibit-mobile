@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { NavController, Platform } from '@ionic/angular';
 import { NFC, Ndef } from '@awesome-cordova-plugins/nfc/ngx';
 import { Observable } from 'rxjs';
+
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
@@ -21,7 +22,9 @@ export class Tab1Page implements OnInit {
 
   async ngOnInit() {
     // await this.readNFCTag()
-    this.isWeb = !(this.platform.is('ios') || this.platform.is('android'))
+    this.isWeb = !(this.platform.is('ios') || this.platform.is('android'));
+
+
   }
 
   navigateArtwork(id: number) {
@@ -122,5 +125,7 @@ export class Tab1Page implements OnInit {
 
     }
   }
+
+
 
 }

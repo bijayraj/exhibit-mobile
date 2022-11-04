@@ -32,7 +32,8 @@
           <img *ngIf="asset.assetType==0" [src]="asset.address" [alt]="asset.description" />
         </div>
 
-        <app-wavplayer *ngIf="asset.assetType == 1" [play_The_track]="asset.address" [title]="asset.title">
+        <app-wavplayer *ngIf="asset.assetType == 1" [play_The_track]="asset.address" [title]="asset.title"
+          [asset]="asset">
         </app-wavplayer>
       </div>
 

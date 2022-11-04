@@ -42,6 +42,7 @@
     "@ionic/pwa-elements": "^3.1.1",
     "capacitor-voice-recorder": "^4.0.0",
     "cordova-plugin-file": "^7.0.0",
+    "cordova-plugin-headsetdetection": "^3.0.0",
     "cordova-plugin-media": "^6.1.0",
     "ionic-selectable": "^4.9.0",
     "ionicons": "^6.0.3",

@@ -15,6 +15,7 @@ import { ArtistArtPage } from './artist-art.page';
     IonicModule,
     ArtistArtPageRoutingModule
   ],
-  declarations: [ArtistArtPage]
+  declarations: [ArtistArtPage],
+  exports: [ArtistArtPage]
 })
-export class ArtistArtPageModule {}
+export class ArtistArtPageModule { }

@@ -12,6 +12,8 @@ import { ActivatedRoute } from '@angular/router';
 import { MediaObject, Media } from '@ionic-native/media/ngx';
 
 import { Platform, LoadingController } from '@ionic/angular';
+import { Autoplay } from 'swiper';
+import { ArtworkAsset } from '../models/artworkAsset';
 
 @Component({
   selector: 'app-wavplayer',
@@ -20,6 +22,8 @@ import { Platform, LoadingController } from '@ionic/angular';
 })
 export class WavPlayerComponent implements OnInit, OnDestroy {
   @Input() title: any;
+  @Input() asset: ArtworkAsset;
+
   artist: any;
   image: string = 'assets/album_art.jpg';
   filename: any = 'Bijay Raj Paudel';
@@ -46,6 +50,53 @@ export class WavPlayerComponent implements OnInit, OnDestroy {
 
   }
 
+  checkHeadPhone() {
+    let toReturn = false;
+
+    try {
+      (<any>window).HeadsetDetection.detect((detected) => {
+        if (detected) {
+          console.log('Headphone connected')
+          toReturn = true;
+          this.play();
+        }
+        else {
+          console.log('No Headphone Found.')
+          toReturn = false;
+        }
+      })
+    } catch (error) {
+      toReturn = false;
+      console.log(error);
+    }
+
+
+    return toReturn;
+  }
+
+  autoPlayAudio() {
+    console.log('Playing is autoplay');
+    console.log(this.asset.autoPlay);
+    if (this.asset.autoPlay) {
+
+      console.log('Auto play is true');
+
+      if (this.asset.onlyInHeadphone) {
+        const detected = this.checkHeadPhone();
+        console.log('Detected is: ');
+        console.log(detected);
+
+        // if (detected) {
+        //   this.play();
+        // }
+
+      } else {
+        console.log('Playing audio: ')
+        this.play();
+      }
+    }
+  }
+
   ngOnInit() {
     // comment out the following line when adjusting UI in browsers
     this.prepareAudioFile();
@@ -54,6 +105,11 @@ export class WavPlayerComponent implements OnInit, OnDestroy {
   prepareAudioFile() {
     this.platform.ready().then((res) => {
       this.getDuration();
+
+      setTimeout(() => {
+        this.autoPlayAudio();
+      }, 1000);
+
     });
   }
 
@@ -90,6 +146,8 @@ export class WavPlayerComponent implements OnInit, OnDestroy {
         }
       }
     }, 100);
+
+
 
   }
 

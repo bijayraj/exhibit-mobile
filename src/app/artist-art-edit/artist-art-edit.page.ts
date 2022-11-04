@@ -25,7 +25,7 @@ export class ArtistArtEditPage implements OnInit {
   constructor(private fb: FormBuilder,
     private authService: AuthenticationService,
     private alertController: AlertController,
-    private platform:Platform,
+    private platform: Platform,
     private router: Router,
     private route: ActivatedRoute,
     private loadingController: LoadingController,
@@ -77,17 +77,17 @@ export class ArtistArtEditPage implements OnInit {
 
   }
 
-  async writeTagIos(){
+  async writeTagIos() {
     try {
-      let tag = await this.nfc.scanNdef({ keepSessionOpen: true});
+      let tag = await this.nfc.scanNdef({ keepSessionOpen: true });
       // you can read tag data here
       console.log(tag);
       let message = [
         this.ndef.textRecord(this.artWork.id.toString()),
         this.ndef.textRecord(this.artWork.title)
       ]
-      
-      try{
+
+      try {
         let writeResult = await this.nfc.write(message);
         console.log('Write succesful')
         // const alert = await this.alertController.create({
@@ -98,7 +98,7 @@ export class ArtistArtEditPage implements OnInit {
         // await alert.present();
 
 
-      } catch(write_error){
+      } catch (write_error) {
         console.log('Could not write tag');
         console.log(write_error);
 
@@ -112,12 +112,12 @@ export class ArtistArtEditPage implements OnInit {
       }
 
 
-  } catch (err) {
+    } catch (err) {
       console.log(err);
-  }
+    }
   }
 
-  async writeTagAndroid(){
+  async writeTagAndroid() {
     this.nfc.addNdefListener(() => {
       console.log('successfully attached ndef listener');
     }, (err) => {
@@ -165,14 +165,9 @@ export class ArtistArtEditPage implements OnInit {
 
     if (this.platform.is('ios')) {
       await this.writeTagIos();
-    } else{
+    } else {
       await this.writeTagAndroid();
     }
-    
-
-
-
-    
   }
 
 
