@@ -4,6 +4,8 @@ import { Ndef, NFC } from '@awesome-cordova-plugins/nfc/ngx';
 import { AlertController, Platform } from '@ionic/angular';
 import { Artwork } from '../models/artwork';
 import { ArtworkService } from '../services/artwork.service';
+import { Geolocation } from '@capacitor/geolocation';
+
 
 @Component({
   selector: 'app-artist-art',
@@ -35,24 +37,38 @@ export class ArtistArtPage implements OnInit {
   }
 
   async writeTagIos(artWork: Artwork) {
+
+
+
     try {
-      let tag = await this.nfc.scanNdef({ keepSessionOpen: true });
-      // you can read tag data here
-      console.log(tag);
+      let tag = await this.nfc.scanTag({ keepSessionOpen: true });
+      let tagIdString = this.nfc.bytesToHexString(tag.id)
+      console.log('The tag id is', tagIdString);
       let message = [
         this.ndef.textRecord(artWork.id.toString()),
         this.ndef.textRecord(artWork.title)
       ]
-
       try {
-        let writeResult = await this.nfc.write(message);
-        console.log('Write succesful')
-        // const alert = await this.alertController.create({
-        //   header: 'Success',
-        //   message: 'Tag created',
-        //   buttons: ['OK'],
-        // });
-        // await alert.present();
+        let location = ''
+
+        try {
+          const coordinates = await Geolocation.getCurrentPosition();
+          console.log('Current position:', coordinates);
+          location = JSON.stringify(coordinates)
+        } catch (locationError) {
+          console.log(locationError);
+        }
+
+        console.log("Reached Here!!")
+
+
+        this.artService.addTag(tagIdString, artWork.id, location).subscribe(async data => {
+          let writeResult = await this.nfc.write(message);
+          console.log('Write succesful');
+        },
+          (err) => {
+            console.log(err);
+          });
 
 
       } catch (write_error) {

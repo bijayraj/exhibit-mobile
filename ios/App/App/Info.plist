@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>Art Exhibit</string>
+	<string>Tag Touring</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -57,7 +57,13 @@
 	<true/>
 	<key>NSSpeechRecognitionUsageDescription</key>
 	<string>Privacy - Speech Recognition for auto answering</string>
-	<key></key>
-	<string></string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Access location to add location information to nfc tags</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Location information to add coordinates to nfc tags while creating them</string>
+	<key>NSLocationUsageDescription</key>
+	<string>Location information to add coordinates to nfc tags while creating them</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Location information to add coordinates to nfc tags while creating them</string>
 </dict>
 </plist>

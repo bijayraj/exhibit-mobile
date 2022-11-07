@@ -9,6 +9,7 @@ import { ArtworkService } from '../services/artwork.service';
 import { AuthenticationService } from '../services/authentication.service';
 import { ExhibitService } from '../services/exhibit.service';
 import { NFC, Ndef } from '@awesome-cordova-plugins/nfc/ngx';
+import { Geolocation } from '@capacitor/geolocation';
 
 @Component({
   selector: 'app-artist-art-edit',
@@ -78,8 +79,12 @@ export class ArtistArtEditPage implements OnInit {
   }
 
   async writeTagIos() {
+
     try {
-      let tag = await this.nfc.scanNdef({ keepSessionOpen: true });
+      let tag = await this.nfc.scanTag({ keepSessionOpen: true });
+      let tagIdString = this.nfc.bytesToHexString(tag.id)
+      console.log('The tag id is', tagIdString);
+
       // you can read tag data here
       console.log(tag);
       let message = [
@@ -88,14 +93,29 @@ export class ArtistArtEditPage implements OnInit {
       ]
 
       try {
-        let writeResult = await this.nfc.write(message);
-        console.log('Write succesful')
-        // const alert = await this.alertController.create({
-        //   header: 'Success',
-        //   message: 'Tag created',
-        //   buttons: ['OK'],
-        // });
-        // await alert.present();
+        let location = ''
+
+        try {
+          const coordinates = await Geolocation.getCurrentPosition();
+          console.log('Current position:', coordinates);
+          location = JSON.stringify(coordinates)
+        } catch (locationError) {
+          console.log(locationError);
+        }
+
+
+        this.artworkService.addTag(tagIdString, this.artWork.id, location).subscribe(async data => {
+          let writeResult = await this.nfc.write(message);
+          console.log('Write succesful');
+          // const alert = await this.alertController.create({
+          //   header: 'Success',
+          //   message: 'Tag created',
+          //   buttons: ['OK'],
+          // });
+          // await alert.present();
+        });
+
+
 
 
       } catch (write_error) {

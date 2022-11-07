@@ -1,8 +1,8 @@
 {
   "name": "exhibit-ui",
   "version": "0.0.1",
-  "author": "Ionic Framework",
-  "homepage": "https://ionicframework.com/",
+  "author": "Bijay Raj Paudel",
+  "homepage": "https://tag-touring.com/",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -31,6 +31,7 @@
     "@capacitor/core": "4.2.0",
     "@capacitor/device": "^4.0.1",
     "@capacitor/filesystem": "^4.1.1",
+    "@capacitor/geolocation": "^4.0.1",
     "@capacitor/haptics": "^4.0.1",
     "@capacitor/ios": "4.2.0",
     "@capacitor/keyboard": "^4.0.1",

@@ -37,5 +37,14 @@ export class ArtworkService {
       .pipe(map(message => message));
   }
 
+  getByTagId(id: string) {
+    return this.http.get<any>(`${environment.apiUrl}/artwork/tag/${id}`);
+  }
+
+  addTag(tagId: string, artworkId: number, location: string) {
+    return this.http.post<any>(`${environment.apiUrl}/artwork-tag`, { uuid: tagId, ArtworkId: artworkId, location: location })
+      .pipe(map(message => message));
+  }
+
 
 }
