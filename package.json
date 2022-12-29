@@ -27,6 +27,7 @@
     "@capacitor-community/text-to-speech": "^2.0.1",
     "@capacitor/android": "4.2.0",
     "@capacitor/app": "^4.0.1",
+    "@capacitor/assets": "^2.0.4",
     "@capacitor/camera": "^4.1.1",
     "@capacitor/core": "4.2.0",
     "@capacitor/device": "^4.0.1",
