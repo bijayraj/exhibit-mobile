@@ -11,24 +11,28 @@
 
   <div class="top-container">
 
-    <h1 class="heading">Tag Touring</h1>
-
+    <h1 class="heading">Tap-Tour</h1>
     <h5 class="sub-heading">
-
-      Tap your phone to this tag to get enlighted!
+      Info is just a tap away!
     </h5>
-
+    <p class="sub-heading">
+      Whenever you see this logo, click the scan button
+    </p>
 
     <div class="flex-center">
-      <div class="image-container">
-        <img src="./assets/images/nfc-icon.svg" class="main-img" />
+      <img src="./assets/images/icon.png" class="main-img" />
+      <!-- <div class="image-container">
+        <img src="./assets/images/icon.png" class="main-img" />
+      </div> -->
 
-      </div>
       <ion-button class="scan-button" fill="outline" type="button" expand="block" color="tertiary"
         (click)="readNFCTag()">
         <ion-icon name="radio" slot="start"></ion-icon>
-        Click here to Start Scanning
+        Scan
       </ion-button>
+      <p class="sub-heading">
+        Then tap your phone on the tag.
+      </p>
 
       <ion-button *ngIf="isWeb" class="scan-button" fill="outline" type="button" expand="block" color="tertiary"
         (click)="navigateArtwork(1)">
@@ -39,6 +43,8 @@
 
       <br />
     </div>
+
+
 
   </div>
 

@@ -17,12 +17,11 @@ const routes: Routes = [
   {
     path: 'login',
     loadChildren: () => import('./pages/login/login.module').then(m => m.LoginPageModule),
-    canLoad: [IntroGuard, AutoLoginGuard]
+    canLoad: [AutoLoginGuard]
   },
   {
     path: 'tabs',
     loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule),
-    canLoad: [IntroGuard]
   },
   {
     path: 'artwork',
